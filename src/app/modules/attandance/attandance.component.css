@@ -1,0 +1,10 @@
+table {
+ width: 100%;
+}
+
+#regulate {
+    float: right;
+}
+mat-slider {
+    width: 100%;
+}

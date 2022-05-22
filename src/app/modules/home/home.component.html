@@ -1,0 +1,63 @@
+
+    <div class="container">
+      <div class="row">
+       <div class="col-sm-4">
+           <mat-card>
+               <mat-card-content><b>{{time | date :'mediumTime'}}</b></mat-card-content>
+           </mat-card> 
+        </div>
+       <div class="col-sm-4">
+        <mat-card>
+            <mat-card-content>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6"> <b>Leaves</b></div>
+                        <div class="col-sm-6"> <b>0</b></div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+       </div>
+       <div class="col-sm-4">
+           <mat-card>
+           <mat-card-content>
+               <div class="container">
+                   <div class="row">
+                       <div class="col-sm-6"><input type="button" class="btn-primary" value="Punch In" *ngIf="!punchIn" (click)="OnPunchIn()" ><input type="button" value="Punch Out" *ngIf="punchIn" class="btn-primary" ></div>
+                       <div class="col-sm-6">0</div>
+                   </div>
+               </div>
+           </mat-card-content>
+           </mat-card>
+    </div>
+    </div>
+    <br>
+        <div class="row">
+        <div class="col-sm-4">
+            <mat-card class="calendar">
+                <mat-card-title>Calendar</mat-card-title>
+                <mat-card-content>
+                    <mat-calendar ></mat-calendar>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-sm-4">
+            <mat-card>
+                <mat-card-title>Leave</mat-card-title>
+                <mat-card-content> 
+                  <canvas  baseChart
+                    [datasets]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [type]="doughnutChartType">
+                </canvas> 
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-sm-4">
+            <mat-card>
+                <mat-card-title>National Holiday</mat-card-title>
+                <mat-card-content></mat-card-content>
+            </mat-card>
+    </div>
+    </div>
+</div>

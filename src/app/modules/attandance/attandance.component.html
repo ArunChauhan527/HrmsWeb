@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"> </div>
+        <div class="col-sm-8">
+             <mat-card>
+             <mat-card-title><p>Attandance</p> </mat-card-title>
+             <mat-card-content *ngIf="!regulate">
+                 <input type="button" value="Regulate Attandance" class="btn-primary" id="regulate" (click)="Onregulate()">
+                 <input type="button" *ngIf="!punchIn" value="Punch In" (click)="OnpunchIn()" class="btn-primary">
+                 <input type="button" *ngIf="punchIn" value="Punch Out" class="btn-primary">
+                 <table>
+                  <tbody *ngFor="let row of attandance">
+                     <tr>
+                         <td>
+                            {{row.punchIn}}
+                         </td>
+                         <td>
+                            <mat-slider aria-label="unit(s)" min="0"  max="24" step="1" value="{{row.value}}" disabled></mat-slider>
+                         </td>
+                         <td>
+                           {{row.punchOut}}
+                         </td>
+                     </tr> 
+                  </tbody>   
+                </table>
+             </mat-card-content>
+             <mat-card-content *ngIf="regulate">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>PunchIn Time</td>
+                            <td>:</td>
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>PunchIn Time</mat-label>
+                                    <input type="time" matInput>
+                                    </mat-form-field>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td>PunchOut Time</td>
+                            <td>:</td>
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>PunchOut Time</mat-label>
+                                <input type="time" matInput>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Reason</td>
+                            <td>:</td>
+                            <td>
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Leave a Remarks</mat-label>
+                                <textarea matInput placeholder="Ex. Forget to Punch..."></textarea>
+                              </mat-form-field>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="button" value="Submit" class="btn-primary">
+             </mat-card-content>
+             </mat-card>  
+        </div>
+        <div class="col-sm-2"> </div>
+    </div>
+</div>
+
