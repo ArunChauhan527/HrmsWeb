@@ -35,6 +35,8 @@ import { ProfileComponent } from './modules/profile/profile.component';
 import { ConfigComponent } from './modules/config/config.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ClientModuleComponent } from './modules/client-module/client-module.component';
+import { RegisterFormComponent } from './modules/register-form/register-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RegisterComponent,
     ReimbursementComponent,
     ProfileComponent,
-    ConfigComponent
+    ConfigComponent,
+    ClientModuleComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

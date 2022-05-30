@@ -32,14 +32,10 @@
                         <td>Module Access</td>
                         <td>:</td>
                         <td>
-                            <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-form-field class="example-full-width" appearance="fill" >
                                 <mat-label>Select Module Access</mat-label>
-                                <mat-select>
-                                    <mat-option value="Attan">Attandance</mat-option>
-                                    <mat-option value="Leave">Leave</mat-option>
-                                    <mat-option value="Payroll">PayRoll</mat-option>
-                                    <mat-option value="Register">Register</mat-option>
-                                    <mat-option value="ReImbursement">ReImbursement</mat-option>
+                                <mat-select  multiple>
+                                    <mat-option *ngFor="let data of ModuleList"  value={{data.sno}} >{{data.name}}</mat-option>
                                  </mat-select>
                                 </mat-form-field>
                         </td>

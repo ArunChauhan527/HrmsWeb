@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { LoginComponent } from './component/login/login.component';
 import { AttandanceComponent } from './modules/attandance/attandance.component';
+import { ClientModuleComponent } from './modules/client-module/client-module.component';
 import { ConfigComponent } from './modules/config/config.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LeaveComponent } from './modules/leave/leave.component';
@@ -58,6 +59,10 @@ const routes: Routes = [
     {
       path: "settings",
       component: ConfigComponent
+    },
+    {
+      path:"client",
+      component: ClientModuleComponent
     }
   ]
 },

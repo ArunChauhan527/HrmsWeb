@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <mat-card>
+                <mat-card-title>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4"> Config Client</div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                    </div>
+                </mat-card-title>
+                <mat-card-content *ngIf="!register">
+                    <br>
+                    <input type="button" id="register" class="btn-primary" value="Register Admin" (click)="registerAdmin()">
+                    <br>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Client Name</td>
+                                <td>:</td>
+                                <td>
+                                <mat-form-field class="example-full-width" appearance="fill" >
+                                    <mat-label>Enter Client Name</mat-label>
+                                    <input type="text" matInput>
+                                </mat-form-field>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>Client Id</td>
+                                <td>:</td>
+                                <td>
+                                    <mat-form-field class="example-full-width" appearance="fill" >
+                                        <mat-label>Cleint Id</mat-label>
+                                        <input type="text" matInput>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Short Name</td>
+                                <td>:</td>
+                                <td>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Enter Short Name</mat-label>
+                                        <input type="text" matInput>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <br>
+                    <input type="button" value="submit" class="btn-primary">
+                </mat-card-content>
+                <mat-card-content *ngIf="register">
+                    <br>
+                    <br>
+                    <app-register-form></app-register-form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

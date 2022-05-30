@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'src/app/component/side-bar/MenuList';
+import { AdminServiceService } from 'src/app/service/admin-service.service';
 
 @Component({
   selector: 'app-config',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigComponent implements OnInit {
 
-  constructor() { }
+  ModuleList! : MenuItem[];
+  constructor(private admin: AdminServiceService) { }
 
   ngOnInit(): void {
+    this.fetchModules();
   }
+
+  fetchModules(){
+   this.admin.fetchModule().subscribe(res=> this.ModuleList = res);
+  }
+
 
 }
