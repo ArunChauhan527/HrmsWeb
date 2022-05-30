@@ -6,7 +6,10 @@
    <div class="col-sm-8">
        <mat-card>
            <mat-card-title>Register Employees</mat-card-title>
-           <mat-card-content>
+           <mat-card-content *ngIf="!bulk">
+               <input type="button" id="bulk" value="Bulk Registration" class="btn-primary" (click)="bulkEnable()">
+               <br>
+               <br>
                <table>
                    <tbody>    
                      <tr>
@@ -14,13 +17,170 @@
                          <td>:</td>
                          <td>
                             <mat-form-field class="example-full-width" appearance="fill">
-                                <mat-label>Employees Name</mat-label>
+                                <mat-label> Enter Employees Name</mat-label>
                              <input type="text"  matInput>
                             </mat-form-field>
                             </td>
                      </tr>
+                     <tr>
+                        <td>UserName</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter UserName</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                     <tr>
+                        <td>Offical Email Id</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter Offical Email Id</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                    <tr>
+                        <td>Personal Email Id</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter Personal Email Id</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                     <tr>
+                        <td>Date Of Birth</td>
+                        <td>:</td>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                           </td>
+                    </tr>
+                     <tr>
+                        <td>Designation</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter Designation</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                    <tr>
+                        <td>Department</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter Department</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter Address</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter City</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter State</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                    <tr>
+                        <td>PinCode</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter PinCode</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                    <tr>
+                        <td>PanCard</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter PanCard</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
+                    <tr>
+                        <td>AadharCardNo</td>
+                        <td>:</td>
+                        <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                               <mat-label>Enter AadharCardNo</mat-label>
+                            <input type="text"  matInput>
+                           </mat-form-field>
+                           </td>
+                    </tr>
                    </tbody>
                </table>
+               <input type="button" class="btn-primary" value="Submit">
+           </mat-card-content>
+           <mat-card-content *ngIf="bulk">
+            <div>
+                <mat-toolbar *ngIf="currentFile" class="progress-bar">
+                  <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
+                  <span class="progress">{{ progress }}%</span>
+                </mat-toolbar>
+                <mat-form-field>
+                  <div>
+                    <mat-toolbar>
+                      <input matInput [value]="fileName" />
+                      <button
+                        mat-flat-button
+                        color="primary"
+                        [disabled]="!currentFile"
+                        (click)="upload()"
+                      >
+                        Upload
+                      </button>
+                    </mat-toolbar>
+                    <input
+                      type="file"
+                      id="fileInput"
+                      (change)="selectFile($event)"
+                      name="fileInput"
+                    />
+                  </div>
+                </mat-form-field>
+              </div>
+              <div *ngIf="message" class="message">
+                {{ message }}
+              </div>
+              <input type="button" value="Sample Sheet" class="btn-primary">
            </mat-card-content>
        </mat-card>
    </div>

@@ -56,7 +56,13 @@
         <div class="col-sm-4">
             <mat-card>
                 <mat-card-title>National Holiday</mat-card-title>
-                <mat-card-content></mat-card-content>
+                <mat-card-content> 
+                   <ul>
+                    <li *ngFor="let data of nationalLeave">
+                        {{data.holiday}} &nbsp; {{data.occuredDate| date : 'MMM, dd' }}
+                    </li>
+                   </ul>
+                </mat-card-content>
             </mat-card>
     </div>
     </div>

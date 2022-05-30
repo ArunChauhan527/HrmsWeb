@@ -1,17 +1,25 @@
-
-<mat-card id="card" style="text-align: center;">
-	<mat-card-title>
-		LOGIN
-	</mat-card-title>
-
-	<mat-card-content>
-
-		<mat-form-field>
-			<input matInput placeholder="email">
-		</mat-form-field><br/>
-
-		<mat-form-field>
-			<input matInput placeholder="********" type="password">
-		</mat-form-field><br/>
-		<button mat-raised-button color="primary" style="margin-right:5px;">login</button>
-	</mat-card-content>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8">
+			<mat-card id="card" style="text-align: center;">
+				<mat-card-title>
+					LOGIN
+				</mat-card-title>
+			
+				<mat-card-content>
+			
+					<mat-form-field>
+						<input matInput placeholder="email" #username>
+					</mat-form-field><br/>
+			
+					<mat-form-field>
+						<input matInput placeholder="********" type="password" #password>
+					</mat-form-field><br/>
+					<button mat-raised-button color="primary" style="margin-right:5px;" (click)="login(username.value,password.value)">login</button>
+				</mat-card-content>
+				</mat-card>
+		</div>
+		<div class="col-sm-2"></div>
+	</div>
+</div>

@@ -28,7 +28,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSliderModule } from '@angular/material/slider';
 import { RegisterComponent } from './modules/register/register.component';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ReimbursementComponent } from './modules/reimbursement/reimbursement.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { ProfileComponent } from './modules/profile/profile.component';
+import { ConfigComponent } from './modules/config/config.component';
+import {  HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,11 +46,15 @@ import { RegisterComponent } from './modules/register/register.component';
     AttandanceComponent,
     PayrollComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ReimbursementComponent,
+    ProfileComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatIconModule,
@@ -61,7 +71,10 @@ import { RegisterComponent } from './modules/register/register.component';
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatSliderModule
+    MatSliderModule,
+    MatProgressBarModule,
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

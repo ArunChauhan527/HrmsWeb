@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <mat-card>
+                <mat-card-title>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4"> Settings</div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                    </div>
+                </mat-card-title>
+
+                <br>
+                <br>
+                <mat-card-content>
+                  <table>
+                   <tbody>
+                       <tr>
+                           <td>Role Name</td>
+                           <td>:</td>
+                           <td>
+                           <mat-form-field class="example-full-width" appearance="fill">
+                           <mat-label>Enter Role Name</mat-label>
+                           <input matInput type="text" >
+                           </mat-form-field>
+                        </td>
+                       </tr>
+                       <tr>
+                        <td>Module Access</td>
+                        <td>:</td>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Select Module Access</mat-label>
+                                <mat-select>
+                                    <mat-option value="Attan">Attandance</mat-option>
+                                    <mat-option value="Leave">Leave</mat-option>
+                                    <mat-option value="Payroll">PayRoll</mat-option>
+                                    <mat-option value="Register">Register</mat-option>
+                                    <mat-option value="ReImbursement">ReImbursement</mat-option>
+                                 </mat-select>
+                                </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Approval Access</td>
+                        <td>:</td>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Select Approval Access</mat-label>
+                                <mat-select>
+                                    <mat-option value="True">True</mat-option>
+                                    <mat-option value="False">False</mat-option>
+                                 </mat-select>
+                                </mat-form-field>
+                        </td>
+                    </tr>
+                   </tbody>
+                  </table>
+                  <input type="button" class="btn-primary" value="Submit">
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

@@ -2,12 +2,16 @@
 
     <div class="row">
       <div class="col-sm-2"></div>
-      <div *ngIf="applyLeave" class="col-sm-8"> 
+      <div *ngIf="!applyLeave" class="col-sm-8"> 
          <mat-card>
          <mat-card-title>
           Apply Leave
          </mat-card-title>
          <mat-card-content>
+            <button class="btn-primary" (click)="applyLeaveFun()">Leave Records</button>
+          <br>
+          <br>
+          <br>
             <div class="container">
                <div class="row">
                   <div class="col-sm-6">
@@ -24,7 +28,7 @@
                                   <mat-form-field appearance="fill">
                                     <mat-label>Leave Type</mat-label>
                                     <mat-select>
-                                       <mat-option vlaue="CL">CL</mat-option>
+                                       <mat-option value="CL">CL</mat-option>
                                        <mat-option value="PL">PL</mat-option>
                                        <mat-option value="LWP">LWP</mat-option>
                                     </mat-select>
@@ -62,7 +66,7 @@
                                  <mat-form-field appearance="fill">
                                     <mat-label>Days</mat-label>
                                     <mat-select>
-                                       <mat-option vlaue="FULL">Full Day</mat-option>
+                                       <mat-option value="FULL">Full Day</mat-option>
                                     <mat-option value="FIRST">1st Half</mat-option>
                                     <mat-option value="SECOND">2nd Half</mat-option>
                                     </mat-select>
@@ -108,11 +112,14 @@
          </mat-card-content>
          </mat-card>
       </div>
-      <div *ngIf="!applyLeave" class="col-sm-8">
-          <button class="btn-primary" (click)="applyLeaveFun()"> Apply Leave</button>
-          <br>
-          <br>
-          <br>
+      <div *ngIf="applyLeave" class="col-sm-8">
+         <mat-card>
+         <mat-card-title>
+            Leaves Record
+           </mat-card-title>
+           <mat-card-content>
+              <br>
+              <br>
           <table mat-table class="mat-elevation-z8 demo-table">
               <!-- Sno Column -->
              <ng-container matColumnDef="Sno">
@@ -157,7 +164,9 @@
           <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                  showFirstLastButtons 
                  aria-label="Select page of periodic elements">
-  </mat-paginator>
+      </mat-paginator>
+   </mat-card-content>
+    </mat-card>
       </div>
       <div class="col-sm-2"></div>
     </div>

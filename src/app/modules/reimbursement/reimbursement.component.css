@@ -1,18 +1,11 @@
 table {
     width: 100%;
 }
-#bulk {
+#reimbursement {
     float: right;
 }
 
-.progress-bar {
-    padding: 0;
-  }
-  .progress {
-    width: 50px;
-    height:100%;
-  }
-  #fileInput {
+#fileInput {
     position: absolute;
     cursor: pointer;
     z-index: 10;
@@ -32,11 +25,3 @@ table {
   .mat-form-field {
     width: 100%;
   }
-  .message {
-    background-color: #ddd;
-    padding: 15px;
-    color: #333;
-    border: #aaa solid 1px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  } 

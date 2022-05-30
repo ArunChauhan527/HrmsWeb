@@ -1,0 +1,217 @@
+<div class="container">
+  <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+          <mat-card>
+            <mat-card-title>
+                Reimbursement
+            </mat-card-title>
+            
+            <mat-card-content *ngIf="!reimbursement">
+                <input type="button"  id="reimbursement" class="btn-primary" value="Past-Reimbursement" (click)="pastReimbursement()">
+                <br>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                           <td>Type</td> 
+                           <td>:</td> 
+                           <td>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Type</mat-label>
+                                <mat-select>
+                                    <mat-option selected="selected" value="select">Select Type</mat-option>
+                                    <mat-option value="8520"> Advertising &amp; Promotion</mat-option>
+                                    <mat-option value="6019"> Automobile expenses</mat-option>
+                                    <mat-option value="6021"> Automobile Insurance</mat-option>
+                                    <mat-option value="6020"> Automobile Lease</mat-option>
+                                    <mat-option value="6430"> Business entertainment</mat-option>
+                                    <mat-option value="6341"> Cell Phone</mat-option>
+                                    <mat-option value="6009"> Commission and Bonus</mat-option>
+                                    <mat-option value="8526"> Donation</mat-option>
+                                    <mat-option value="6160"> Dues and Subscriptions</mat-option>
+                                    <mat-option value="6345"> Hardware expenses (Own Use)</mat-option>
+                                    <mat-option value="6180"> Insurance Expense</mat-option>
+                                    <mat-option value="6342"> Internet Expenses</mat-option>
+                                    <mat-option value="6292"> Leasehold Improvement Expenses</mat-option>
+                                    <mat-option value="8521"> Marketing expense</mat-option>
+                                    <mat-option value="8527"> Marketing expense_Partner Events</mat-option>
+                                    <mat-option value="6018"> Membership subscriptions</mat-option>
+                                    <mat-option value="6291"> Office expenses</mat-option>
+                                    <mat-option value="6490"> Office Supplies</mat-option>
+                                    <mat-option value="6354"> Penalties and Late fees</mat-option>
+                                    <mat-option value="6271"> Professional  Legal Fees</mat-option>
+                                    <mat-option value="6270"> Professional Fees</mat-option>
+                                    <mat-option value="6272"> Professional Fees - Accounting</mat-option>
+                                    <mat-option value="6273"> Professional Fees - Warehouse</mat-option>
+                                    <mat-option value="6274"> Professional Fees- HR</mat-option>
+                                    <mat-option value="6275"> Professional Fees- Office</mat-option>
+                                    <mat-option value="6351"> Repairs and Maintenance</mat-option>
+                                    <mat-option value="6432"> Sales &amp; Marketing - India</mat-option>
+                                    <mat-option value="6344"> Software Expenses (Own Use)</mat-option>
+                                    <mat-option value="6340"> Telephone Expense</mat-option>
+                                    <mat-option value="6017"> Training &amp; Education</mat-option><mat-option value="6853"> Travel exp - Public Transport</mat-option><mat-option value="6852"> Travel expense (Others)</mat-option><mat-option value="6841"> Travel expense - Airline ticket</mat-option><mat-option value="6844"> Travel expense- Meals</mat-option><mat-option value="6842"> Travel expenses -  Accomodation</mat-option><mat-option value="6850"> Travel expenses - Baggage</mat-option><mat-option value="6851"> Travel expenses - Cab</mat-option><mat-option value="6843"> Travel expenses - Car rental</mat-option><mat-option value="6849"> Travel expenses - Fuel</mat-option><mat-option value="6847"> Travel expenses - Parking</mat-option><mat-option value="6848"> Travel expenses - Tolls</mat-option><mat-option value="6846"> Travel expenses- Mileage</mat-option><mat-option value="6845"> Travel expenses- per diem</mat-option><mat-option value="9000"> Uncategorized Expenses</mat-option><mat-option value="6350"> Utilities</mat-option>
+                                    <mat-option value="6431"> Vehicle Maintenance</mat-option>
+                                   
+                                </mat-select>
+                               </mat-form-field>
+                           </td> 
+                        </tr>
+                        <tr>
+                            <td>Expense Name</td> 
+                            <td>:</td> 
+                            <td> 
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label> Enter Expense Name</mat-label>
+                             <input type="text"  matInput>
+                            </mat-form-field>
+                        </td> 
+                         </tr>
+                         <tr>
+                            <td>Bill Number</td> 
+                            <td>:</td> 
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label> Enter Bill Number</mat-label>
+                                 <input type="text"  matInput>
+                                </mat-form-field>
+                            </td> 
+                         </tr>
+                         <tr>
+                            <td>Amount</td> 
+                            <td>:</td> 
+                            <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label> Amount</mat-label>
+                             <input type="number"  matInput>
+                            </mat-form-field>
+                        </td> 
+                         </tr>
+                         <tr>
+                           <td>Claimed</td> 
+                           <td>:</td> 
+                           <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label> Claimed Amount</mat-label>
+                             <input type="number"  matInput>
+                            </mat-form-field> 
+                           </td> 
+                        </tr>
+                        <tr>
+                            <td>Date</td> 
+                            <td>:</td> 
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </td> 
+                         </tr>
+                         <tr>
+                            <td>Attachment</td> 
+                            <td>:</td> 
+                            <td>
+                                <div>
+                                    <mat-toolbar>
+                                      <input matInput [value]="fileName"  />
+                                      <button
+                                        mat-flat-button
+                                        color="primary"
+                                      >
+                                        Upload
+                                      </button>
+                                    </mat-toolbar>
+                                    <input
+                                      type="file"
+                                      id="fileInput"
+                                      name="fileInput"
+                                    />
+                                  </div>
+                            </td> 
+                         </tr>
+                         <tr>
+                            <td>Remark</td> 
+                            <td>:</td> 
+                            <td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Leave a Remarks</mat-label>
+                                    <textarea matInput placeholder="Ex. ..."></textarea>
+                                </mat-form-field>
+                            </td> 
+                         </tr>
+                    </tbody>
+                </table>    
+                <input type="button" class="btn-primary" value="Submit"> 
+            </mat-card-content>
+            <mat-card-content *ngIf="reimbursement">
+                <br>
+                <br>
+                <table mat-table class="mat-elevation-z8 demo-table">
+                    <!-- Sno Column -->
+                   <ng-container matColumnDef="Sno">
+                    <th mat-header-cell *matHeaderCellDef> Sno </th>
+                    <td mat-cell *matCellDef="let element">  </td>
+                   </ng-container>
+      
+                   <!-- Req.No Column -->
+                   <ng-container matColumnDef="Req.No">
+                      <th mat-header-cell *matHeaderCellDef> Req.No </th>
+                      <td mat-cell *matCellDef="let element">  </td>
+                   </ng-container>
+      
+                   <!-- CreatedOn Column -->
+                   <ng-container matColumnDef="CreatedOn">
+                      <th mat-header-cell *matHeaderCellDef> CreatedOn </th>
+                      <td mat-cell *matCellDef="let element">  </td>
+                   </ng-container>
+                   <!-- UpdatedOn Column -->
+                   <ng-container matColumnDef="UpdatedOn">
+                      <th mat-header-cell *matHeaderCellDef> UpdatedOn </th>
+                      <td mat-cell *matCellDef="let element">  </td>
+                   </ng-container>
+                   <!-- Claimed Column -->
+                   <ng-container matColumnDef="Claimed">
+                      <th mat-header-cell *matHeaderCellDef> Claimed </th>
+                      <td mat-cell *matCellDef="let element">  </td>
+                   </ng-container>
+                   <!-- Approved Column -->
+                   <ng-container matColumnDef="Approved">
+                      <th mat-header-cell *matHeaderCellDef> Approved </th>
+                      <td mat-cell *matCellDef="let element">  </td>
+                   </ng-container>
+                   <!-- Reviewer Column -->
+                   <ng-container matColumnDef="Reviewer">
+                      <th mat-header-cell *matHeaderCellDef> Reviewer </th>
+                      <td mat-cell *matCellDef="let element">  </td>
+                   </ng-container>
+                   <!-- Remark Column -->
+                   <ng-container matColumnDef="Remark">
+                    <th mat-header-cell *matHeaderCellDef> Remark </th>
+                    <td mat-cell *matCellDef="let element">  </td>
+                 </ng-container>
+                 <!-- Status Column -->
+                 <ng-container matColumnDef="Status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element">  </td>
+                 </ng-container>
+                 <!-- Actions Column -->
+                 <ng-container matColumnDef="Actions">
+                    <th mat-header-cell *matHeaderCellDef> Actions </th>
+                    <td mat-cell *matCellDef="let element">  </td>
+                 </ng-container>
+                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>  
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons 
+                        aria-label="Select page of periodic elements">
+            </mat-paginator>
+            </mat-card-content>
+          </mat-card>
+      </div>
+      <div class="col-sm-2"></div>
+  </div>
+</div>

@@ -2,7 +2,16 @@
     <mat-icon >menu</mat-icon>
     <div>Hrms</div>
     <div>
-        <mat-icon>notifications</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>notifications</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <ul>
+                <li>First Notification  &nbsp;</li>
+            </ul>
+          </mat-menu>   
+       <button mat-icon-button aria-label="Example icon-button with a menu" (click)="logout()">
         <mat-icon >logout</mat-icon>
+       </button> 
     </div>
 </mat-toolbar>
