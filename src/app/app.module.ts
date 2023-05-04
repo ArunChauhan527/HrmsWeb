@@ -33,10 +33,23 @@ import { ReimbursementComponent } from './modules/reimbursement/reimbursement.co
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { ConfigComponent } from './modules/config/config.component';
-import {  HttpClientModule } from '@angular/common/http';
+import {  HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ClientModuleComponent } from './modules/client-module/client-module.component';
 import { RegisterFormComponent } from './modules/register-form/register-form.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import { GenderPipe } from './Pipe/gender.pipe';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DialogComponent } from './dialog/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModulesPipe } from './Pipe/modules.pipe';
+import { AuthInterceptor } from './Auth/auth-interceptor';
+import { DatePipe } from '@angular/common';
+import {MatTabsModule} from '@angular/material/tabs'
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +66,12 @@ import { RegisterFormComponent } from './modules/register-form/register-form.com
     ProfileComponent,
     ConfigComponent,
     ClientModuleComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ForgetPasswordComponent,
+    ChangePasswordComponent,
+    GenderPipe,
+    DialogComponent,
+    ModulesPipe
   ],
   imports: [
     BrowserModule,
@@ -78,9 +96,20 @@ import { RegisterFormComponent } from './modules/register-form/register-form.com
     MatSliderModule,
     MatProgressBarModule,
     MatMenuModule,
-    MatSnackBarModule
-  ],
-  providers: [],
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatTabsModule
+   ],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true
+    },
+  DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

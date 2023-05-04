@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 
 @Component({
   selector: 'app-reimbursement',
@@ -12,9 +13,10 @@ export class ReimbursementComponent implements OnInit {
   reimbursement: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   displayedColumns : string[] = ['Sno', 'Req.No', 'CreatedOn','UpdatedOn','Claimed','Approved','Reviewer','Remark','Status','Actions'];
-  constructor() { }
+  constructor(private auth : AuthenticationService) { }
 
   ngOnInit(): void {
+    this.auth.checkAuth();
   }
 
    pastReimbursement() {

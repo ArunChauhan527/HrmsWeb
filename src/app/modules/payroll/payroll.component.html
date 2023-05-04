@@ -1,13 +1,237 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
-        <mat-card>
-            <mat-card-title>Payroll</mat-card-title>
-            <mat-card-content></mat-card-content>
-        </mat-card>
-    </div>
-    <div class="col-sm-2"></div>
-  </div>
-</div>
 
+<mat-card>
+
+  <mat-tab-group>
+    <mat-tab label="InvestMent Declaration">
+   <form [formGroup]="investmentDec" (ngSubmit)="onSubmit()">
+     <label class="First">1. Deduction under chapter VI-A</label>
+     <label class="limit First">Max Limit*: 200000</label>
+     <br>
+     <label class="sub">1.1 Deductions under Section 80C+80CCC(150000)</label>
+     <table>
+      <tr>
+        <td class="label">Public Provident Fund</td>
+        <td> <input type="text" formControlName="ppf" [ngClass]="investmentDec.controls['ppf'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">80CCC: Premium to be paid for annuity plan</td>
+        <td> <input type="text" formControlName="annuityPlan" [ngClass]="investmentDec.controls['annuityPlan'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">Life Insurance</td>
+        <td> <input type="text" formControlName="lifeInsurance" [ngClass]="investmentDec.controls['lifeInsurance'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">National Savings Certificate</td>
+        <td> <input type="text" formControlName="nsc" [ngClass]="investmentDec.controls['nsc'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">Sukanya Samriddhi Yojana</td>
+        <td> <input type="text" formControlName="ssy" [ngClass]="investmentDec.controls['ssy'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">Stamp Duty and Registration Charges</td>
+        <td> <input type="text" formControlName="stampDregCharge" [ngClass]="investmentDec.controls['stampDregCharge'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">Senior Citizens Savings Scheme</td>
+        <td> <input type="text" formControlName="scss" [ngClass]="investmentDec.controls['scss'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">Tuition Fees</td>
+        <td> <input type="text" formControlName="tuitionFee" [ngClass]="investmentDec.controls['tuitionFee'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">Home Loan Principal Repayment</td>
+        <td> <input type="text" formControlName="hlpr" [ngClass]="investmentDec.controls['hlpr'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">Equity Linked Saving Scheme</td>
+        <td> <input type="text" formControlName="elss" [ngClass]="investmentDec.controls['elss'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+     </table>
+     <label class="sub">1.2 Deductions under other sections like 80D,80E,80G</label>
+     <table>
+      <tr>
+        <td class="label">80E: Interest to be paid on education loan</td>
+        <td> <input type="text" formControlName="eduInterest" [ngClass]="investmentDec.controls['eduInterest'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">80G: Donations to be made to specified organization</td>
+        <td> <input type="text" formControlName="specialDonation" [ngClass]="investmentDec.controls['specialDonation'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      <tr>
+        <td class="label">80D: Deduction in respect of medical insurance premium</td>
+        <td> <input type="text" formControlName="medicalInsurance" [ngClass]="investmentDec.controls['medicalInsurance'].invalid? 'form-control error' : 'form-control'" ></td>
+      </tr>
+      </table>
+      <label class="sub">1.3 Deductions under Section 80CCD(50000)</label>
+      <table>
+        <tr>
+          <td class="label">80CCD: Additional contributions made to NPS</td>
+          <td> <input type="text" formControlName="nps" [ngClass]="investmentDec.controls['nps'].invalid? 'form-control error' : 'form-control'" ></td>
+        </tr>
+
+      </table>
+      <label class="First"> 2. Home loan interest</label>
+      <label class="limit First"> Max Limit*: 200000</label>
+      <br>
+      <label class="sub">2.1 Home Loan</label> 
+      <table>
+        <tr>
+          <td class="label">Home Loan Interest paid during the year</td>
+          <td><input type="text" formControlName="homeLoan" [ngClass]="investmentDec.controls['homeLoan'].invalid? 'form-control error' : 'form-control'" ></td>
+        </tr>
+        </table>
+        <label class="First">3. House Rent Allowance</label>
+        <table>
+          <tr>
+            <td class="label">House Rent Paid</td>
+            <td><input type="text" formControlName="houseRent" [ngClass]="investmentDec.controls['houseRent'].invalid? 'form-control error' : 'form-control'" ></td>
+          </tr>
+          </table>
+         <label class="First">4. Leave travel concessions or assistance</label>
+         <table>
+          <tr>
+            <td class="label">LTA Claimed</td>
+            <td><input type="text" formControlName="lta" [ngClass]="investmentDec.controls['lta'].invalid? 'form-control error' : 'form-control'" ></td>
+          </tr>
+         </table> 
+         <button mat-raised-button color="primary" class="submit">Submit</button>
+        </form>
+    </mat-tab>
+    <mat-tab label="SalarySlip">
+      <div class="container">
+     <div class="row">
+      <div class="col-sm-3">
+      <canvas id="Salary" #Salary>{{chart}}</canvas>
+      <button mat-raised-button color="primary" class="slip">Download Salary Slip</button>
+    </div> 
+    </div>
+     <table class="taxDeduction">
+      <tr>
+        <td>Tax deduction this financial Year</td>
+        <td> Rs . 100000</td>
+      </tr>
+     </table>
+    </div>
+    </mat-tab> 
+    <mat-tab label="InvestMent Proof">
+      <form [formGroup]="investmentDec">
+        <label class="First">1. Deduction under chapter VI-A</label>
+        <label class="limit First">Max Limit*: 200000</label>
+        <br>
+        <label class="sub">1.1 Deductions under Section 80C+80CCC(150000)</label>
+        <table>
+         <tr>
+           <td class="label">Public Provident Fund</td>
+           <td> <input type="text" formControlName="ppf" [ngClass]="investmentDec.controls['ppf'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">80CCC: Premium to be paid for annuity plan</td>
+           <td> <input type="text" formControlName="annuityPlan" [ngClass]="investmentDec.controls['annuityPlan'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">Life Insurance</td>
+           <td> <input type="text" formControlName="lifeInsurance" [ngClass]="investmentDec.controls['lifeInsurance'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+          </tr>
+         <tr>
+           <td class="label">National Savings Certificate</td>
+           <td> <input type="text" formControlName="nsc" [ngClass]="investmentDec.controls['nsc'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">Sukanya Samriddhi Yojana</td>
+           <td> <input type="text" formControlName="ssy" [ngClass]="investmentDec.controls['ssy'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">Stamp Duty and Registration Charges</td>
+           <td> <input type="text" formControlName="stampDregCharge" [ngClass]="investmentDec.controls['stampDregCharge'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">Senior Citizens Savings Scheme</td>
+           <td> <input type="text" formControlName="scss" [ngClass]="investmentDec.controls['scss'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">Tuition Fees</td>
+           <td> <input type="text" formControlName="tuitionFee" [ngClass]="investmentDec.controls['tuitionFee'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">Home Loan Principal Repayment</td>
+           <td> <input type="text" formControlName="hlpr" [ngClass]="investmentDec.controls['hlpr'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">Equity Linked Saving Scheme</td>
+           <td> <input type="text" formControlName="elss" [ngClass]="investmentDec.controls['elss'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+        </table>
+        <label class="sub">1.2 Deductions under other sections like 80D,80E,80G</label>
+        <table>
+         <tr>
+           <td class="label">80E: Interest to be paid on education loan</td>
+           <td> <input type="text" formControlName="eduInterest" [ngClass]="investmentDec.controls['eduInterest'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">80G: Donations to be made to specified organization</td>
+           <td> <input type="text" formControlName="specialDonation" [ngClass]="investmentDec.controls['specialDonation'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         <tr>
+           <td class="label">80D: Deduction in respect of medical insurance premium</td>
+           <td> <input type="text" formControlName="medicalInsurance" [ngClass]="investmentDec.controls['medicalInsurance'].invalid? 'form-control error' : 'form-control'" ></td>
+           <td class="input"><input type="file"></td>
+         </tr>
+         </table>
+         <label class="sub">1.3 Deductions under Section 80CCD(50000)</label>
+         <table>
+           <tr>
+             <td class="label">80CCD: Additional contributions made to NPS</td>
+             <td> <input type="text" formControlName="nps" [ngClass]="investmentDec.controls['nps'].invalid? 'form-control error' : 'form-control'" ></td>
+             <td class="input"><input type="file"></td>
+           </tr>
+   
+         </table>
+         <label class="First"> 2. Home loan interest</label>
+         <label class="limit First"> Max Limit*: 200000</label>
+         <br>
+         <label class="sub">2.1 Home Loan</label> 
+         <table>
+           <tr>
+             <td class="label">Home Loan Interest paid during the year</td>
+             <td><input type="text" formControlName="homeLoan" [ngClass]="investmentDec.controls['homeLoan'].invalid? 'form-control error' : 'form-control'" ></td>
+             <td class="input"><input type="file"></td>
+           </tr>
+           </table>
+           <label class="First">3. House Rent Allowance</label>
+           <table>
+             <tr>
+               <td class="label">House Rent Paid</td>
+               <td><input type="text" formControlName="houseRent" [ngClass]="investmentDec.controls['houseRent'].invalid? 'form-control error' : 'form-control'" ></td>
+               <td class="input"><input type="file"></td>
+             </tr>
+             </table>
+            <label class="First">4. Leave travel concessions or assistance</label>
+            <table>
+             <tr>
+               <td class="label">LTA Claimed</td>
+               <td><input type="text" formControlName="lta" [ngClass]="investmentDec.controls['lta'].invalid? 'form-control error' : 'form-control'" ></td>
+               <td class="input"><input type="file"></td>
+             </tr>
+            </table> 
+            <button mat-raised-button color="primary" class="submit">Submit</button>
+           </form>
+    </mat-tab> 
+  </mat-tab-group>
+
+
+</mat-card>

@@ -1,0 +1,7 @@
+a:hover{
+    cursor: pointer;
+}
+
+mat-card {
+    height: 100%;
+}

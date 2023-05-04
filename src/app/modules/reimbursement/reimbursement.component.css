@@ -25,3 +25,10 @@ table {
   .mat-form-field {
     width: 100%;
   }
+  mat-card {
+    height:  100%;
+  }
+
+  .margintop{
+    margin-top: 2%;
+  }

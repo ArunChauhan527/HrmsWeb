@@ -1,173 +1,171 @@
-<div class="container">
-
-    <div class="row">
-      <div class="col-sm-2"></div>
-      <div *ngIf="!applyLeave" class="col-sm-8"> 
-         <mat-card>
-         <mat-card-title>
-          Apply Leave
-         </mat-card-title>
-         <mat-card-content>
-            <button class="btn-primary" (click)="applyLeaveFun()">Leave Records</button>
-          <br>
-          <br>
-          <br>
-            <div class="container">
-               <div class="row">
-                  <div class="col-sm-6">
-                     <table>
-                        <tbody>
-                           <tr>
-                              <td>
-                                 Leave Type 
-                              </td>
-                              <td>
+<mat-card>
+   <mat-tab-group>
+      <mat-tab label="Apply Leave">
+         <div class="container leave">
+            <div class="row">
+               <div class="col-sm-6">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <td>
+                              Leave Type 
+                           </td>
+                           <td>
+                           :
+                           </td>
+                           <td>
+                               <mat-form-field appearance="fill">
+                                 <mat-label>Leave Type</mat-label>
+                                 <mat-select #type>
+                                    <mat-option [value]="Type.CL">CL</mat-option>
+                                    <mat-option [value]="Type.PL">PL</mat-option>
+                                    <mat-option [value]="Type.LWP">LWP</mat-option>
+                                 </mat-select>
+                                </mat-form-field>
+                        </td>
+                        </tr>
+                        <tr>
+                           <td>
+                             Start/End Days 
+                           </td>
+                           <td>
                               :
                               </td>
-                              <td>
-                                  <mat-form-field appearance="fill">
-                                    <mat-label>Leave Type</mat-label>
-                                    <mat-select>
-                                       <mat-option value="CL">CL</mat-option>
-                                       <mat-option value="PL">PL</mat-option>
-                                       <mat-option value="LWP">LWP</mat-option>
-                                    </mat-select>
-                                   </mat-form-field>
+                           <td>
+                              <mat-form-field appearance="fill">
+                                 <mat-label>Enter a date range</mat-label>
+                                 <mat-date-range-input [rangePicker]="picker">
+                                   <input matStartDate placeholder="Start date" #startDate>
+                                   <input matEndDate placeholder="End date" #endDate>
+                                 </mat-date-range-input>
+                                 <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                 <mat-date-range-picker #picker></mat-date-range-picker>
+                               </mat-form-field>
+                        </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              HALF/FULL Day 
                            </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                Start/End Days 
+                           <td>
+                              :
                               </td>
-                              <td>
-                                 :
-                                 </td>
-                              <td>
-                                 <mat-form-field appearance="fill">
-                                    <mat-label>Enter a date range</mat-label>
-                                    <mat-date-range-input [rangePicker]="picker">
-                                      <input matStartDate placeholder="Start date">
-                                      <input matEndDate placeholder="End date">
-                                    </mat-date-range-input>
-                                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-date-range-picker #picker></mat-date-range-picker>
-                                  </mat-form-field>
+                           <td>
+                              <mat-form-field appearance="fill">
+                                 <mat-label>Days</mat-label>
+                                 <mat-select #dur>
+                                 <mat-option [value]="duration.FullDay">Full Day</mat-option>
+                                 <mat-option [value]="duration.FIRSTHALF">1st Half</mat-option>
+                                 <mat-option [value]="duration.SECONDHALF">2nd Half</mat-option>
+                                 </mat-select>
+                              </mat-form-field>
+                        </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              Days 
                            </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 HALF/FULL Day 
+                           <td>
+                              :
                               </td>
-                              <td>
-                                 :
-                                 </td>
-                              <td>
-                                 <mat-form-field appearance="fill">
-                                    <mat-label>Days</mat-label>
-                                    <mat-select>
-                                       <mat-option value="FULL">Full Day</mat-option>
-                                    <mat-option value="FIRST">1st Half</mat-option>
-                                    <mat-option value="SECOND">2nd Half</mat-option>
-                                    </mat-select>
-                                 </mat-form-field>
+                           <td>
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                 <mat-label>No Of Days</mat-label>
+                                <input matInput type="number" #noDay >
+                              </mat-form-field>
+                        </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              Remarks 
                            </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 Days 
+                           <td>
+                              :
                               </td>
-                              <td>
-                                 :
-                                 </td>
-                              <td>
-                                 <mat-form-field class="example-full-width" appearance="fill">
-                                    <mat-label>No Of Days</mat-label>
-                                   <input matInput type="number" >
-                                 </mat-form-field>
-                           </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 Remarks 
-                              </td>
-                              <td>
-                                 :
-                                 </td>
-                              <td>
-                                 <mat-form-field class="example-full-width" appearance="fill">
-                                    <mat-label>Leave a Remarks</mat-label>
-                                    <textarea matInput placeholder="Ex. You are Sick..."></textarea>
-                                  </mat-form-field> 
-                           </td>
-                           </tr>
-                        </tbody>
-                     </table>         
-                  </div>
-                  <div class="col-sm-6">     
-                  </div>
+                           <td>
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                 <mat-label>Leave a Remarks</mat-label>
+                                 <textarea matInput placeholder="Ex. You are Sick..." #reason></textarea>
+                               </mat-form-field> 
+                        </td>
+                        </tr>
+                     </tbody>
+                  </table>         
+               </div>
+               <div class="col-sm-6">     
                </div>
             </div>
-         <input type="button" value="Submit" class="btn-primary" />
-         </mat-card-content>
-         </mat-card>
-      </div>
-      <div *ngIf="applyLeave" class="col-sm-8">
-         <mat-card>
-         <mat-card-title>
-            Leaves Record
-           </mat-card-title>
-           <mat-card-content>
-              <br>
-              <br>
-          <table mat-table class="mat-elevation-z8 demo-table">
-              <!-- Sno Column -->
-             <ng-container matColumnDef="Sno">
-              <th mat-header-cell *matHeaderCellDef> Sno </th>
-              <td mat-cell *matCellDef="let element">  </td>
-             </ng-container>
+         </div>
+         <button mat-raised-button color="primary" (click)="saveLeave(type.value,startDate.value, endDate.value,dur.value, noDay.value, reason.value)">Submit</button>
+      
+      </mat-tab>
+      <mat-tab label="Leave Record">
+         <table mat-table [dataSource]="Leaves" class="mat-elevation-z8 leave-table leave">
+            <!-- Sno Column -->
+           <ng-container matColumnDef="Sno">
+            <th mat-header-cell *matHeaderCellDef> Sno </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+           </ng-container>
 
-             <!-- Leave Type Column -->
-             <ng-container matColumnDef="Type">
-                <th mat-header-cell *matHeaderCellDef> Leave Type </th>
-                <td mat-cell *matCellDef="let element">  </td>
-             </ng-container>
+           <!-- Leave Type Column -->
+           <ng-container matColumnDef="Type">
+              <th mat-header-cell *matHeaderCellDef> Leave Type </th>
+              <td mat-cell *matCellDef="let element" matTooltip="{{element.type}}"> {{element.type}} </td>
+           </ng-container>
 
-             <!-- Leave Type Column -->
-             <ng-container matColumnDef="Status">
-                <th mat-header-cell *matHeaderCellDef> Status </th>
-                <td mat-cell *matCellDef="let element">  </td>
-             </ng-container>
-             <!-- AppliedOn Column -->
-             <ng-container matColumnDef="appliedOn">
-                <th mat-header-cell *matHeaderCellDef> AppliedOn </th>
-                <td mat-cell *matCellDef="let element">  </td>
-             </ng-container>
-             <!-- AppliedOn Column -->
-             <ng-container matColumnDef="appliedBy">
-                <th mat-header-cell *matHeaderCellDef> AppliedBy </th>
-                <td mat-cell *matCellDef="let element">  </td>
-             </ng-container>
-             <!-- AppliedOn Column -->
-             <ng-container matColumnDef="approvedOn">
-                <th mat-header-cell *matHeaderCellDef> ApprovedOn </th>
-                <td mat-cell *matCellDef="let element">  </td>
-             </ng-container>
-             <!-- AppliedOn Column -->
-             <ng-container matColumnDef="approvedBy">
-                <th mat-header-cell *matHeaderCellDef> ApprovedBy </th>
-                <td mat-cell *matCellDef="let element">  </td>
-             </ng-container>
-             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>  
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons 
-                 aria-label="Select page of periodic elements">
-      </mat-paginator>
-   </mat-card-content>
-    </mat-card>
-      </div>
-      <div class="col-sm-2"></div>
-    </div>
-</div>
+           <!-- Status Column -->
+           <ng-container matColumnDef="Status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let element" matTooltip="{{element.status}}"> {{element.status}} </td>
+           </ng-container>
+           <!-- AppliedOn Column -->
+           <ng-container matColumnDef="appliedOn">
+              <th mat-header-cell *matHeaderCellDef> AppliedOn </th>
+              <td mat-cell *matCellDef="let element" matTooltip="{{element.appliedon | date : 'mediumDate'}}"> {{element.appliedon | date : 'mediumDate'}}  </td>
+           </ng-container>
+           <!-- AppliedBy Column -->
+           <ng-container matColumnDef="appliedBy">
+              <th mat-header-cell *matHeaderCellDef> AppliedBy </th>
+              <td mat-cell *matCellDef="let element" matTooltip="{{element.appliedBy}}"> {{element.appliedBy}} </td>
+           </ng-container>
+            <!-- NoDays Column -->
+            <ng-container matColumnDef="noDays">
+             <th mat-header-cell *matHeaderCellDef> No Of Days </th>
+             <td mat-cell *matCellDef="let element" matTooltip="{{element.noLeave}}"> {{element.noLeave}} </td>
+          </ng-container>
+           <!-- fromDate Column -->
+           <ng-container matColumnDef="fromDate">
+             <th mat-header-cell *matHeaderCellDef> FromDate </th>
+             <td mat-cell *matCellDef="let element" matTooltip="{{element.fromDate | date :'mediumDate'}}"> {{element.fromDate | date :'mediumDate'}} </td>
+          </ng-container>
+           <!-- ToDate Column -->
+           <ng-container matColumnDef="toDate">
+             <th mat-header-cell *matHeaderCellDef> ToDate </th>
+             <td mat-cell *matCellDef="let element" matTooltip="{{element.toDate | date : 'mediumDate'}}"> {{element.toDate | date : 'mediumDate'}} </td>
+          </ng-container>
+           <!-- ApprovedOn Column -->
+           <ng-container matColumnDef="approvedOn">
+              <th mat-header-cell *matHeaderCellDef> ApprovedOn </th>
+              <td mat-cell *matCellDef="let element" matTooltip="{{element.approvedOn | date : 'mediumDate'}}"> {{element.approvedOn | date : 'mediumDate'}}  </td>
+           </ng-container>
+           <!-- ApprovedBy Column -->
+           <ng-container matColumnDef="approvedBy">
+              <th mat-header-cell *matHeaderCellDef> ApprovedBy </th>
+              <td mat-cell *matCellDef="let element" matTooltip="{{element.approvedBy}}"> {{element.approvedBy}} </td>
+           </ng-container>
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+             <th mat-header-cell *matHeaderCellDef> Action </th>
+             <td mat-cell *matCellDef="let element" matTooltip="{{element.action}}" > {{element.action}} </td>
+          </ng-container>
+           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>  
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="size" [length]="totalNumber" [pageIndex]="page"
+               showFirstLastButtons (page)="pageEvent($event)"
+               aria-label="Select page of periodic elements">
+    </mat-paginator>
+      </mat-tab>
+   </mat-tab-group>
+</mat-card>

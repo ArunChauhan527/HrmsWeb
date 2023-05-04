@@ -1,54 +1,131 @@
-<div class="container">
-   <div class="row">
-   <div class="col-sm-2">
-
-   </div>
-   <div class="col-sm-8">
-       <mat-card>
-           <mat-card-title>Register Employees</mat-card-title>
-           <mat-card-content *ngIf="!bulk">
-               <input type="button" id="bulk" value="Bulk Registration" class="btn-primary" (click)="bulkEnable()">
-               <br>
-               <br>
-               <app-register-form></app-register-form>
-           </mat-card-content>
-           <mat-card-content *ngIf="bulk">
-            <div>
-                <mat-toolbar *ngIf="currentFile" class="progress-bar">
-                  <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
-                  <span class="progress">{{ progress }}%</span>
+<mat-card id="main-Card" style="overflow-y: auto;"  >
+        <mat-tab-group>
+          <mat-tab label="Register Employess">      <app-register-form></app-register-form></mat-tab>
+          <mat-tab label="Bulk Registration"> <div>
+            <mat-toolbar *ngIf="currentFile" class="progress-bar">
+              <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
+              <span class="progress">{{ progress }}%</span>
+            </mat-toolbar>
+            <mat-form-field>
+              <div>
+                <mat-toolbar>
+                  <input matInput [value]="fileName" #file />
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    [disabled]="!currentFile"
+                    (click)="upload()"
+                  >
+                    Upload
+                  </button>
                 </mat-toolbar>
-                <mat-form-field>
-                  <div>
-                    <mat-toolbar>
-                      <input matInput [value]="fileName" />
-                      <button
-                        mat-flat-button
-                        color="primary"
-                        [disabled]="!currentFile"
-                        (click)="upload()"
-                      >
-                        Upload
-                      </button>
-                    </mat-toolbar>
-                    <input
-                      type="file"
-                      id="fileInput"
-                      (change)="selectFile($event)"
-                      name="fileInput"
-                    />
-                  </div>
-                </mat-form-field>
+                <input
+                  type="file"
+                  id="fileInput"
+                  (change)="selectFile($event)"
+                  name="fileInput" accept=".xlsx, .xls, .csv"
+                />
               </div>
-              <div *ngIf="message" class="message">
-                {{ message }}
-              </div>
-              <input type="button" value="Sample Sheet" class="btn-primary">
-           </mat-card-content>
-       </mat-card>
-   </div>
-   <div class="col-sm-2">
-       
-   </div>
-   </div>
-</div>
+            </mat-form-field>
+          </div>
+          <div *ngIf="message" class="message">
+            {{ message }}
+          </div>
+          <input type="button" value="Sample Sheet" class="btn-primary" (click)="downloadSampleReg()">
+        </mat-tab>
+          <mat-tab label="Employees List">
+            <div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <mat-form-field appearance="fill">
+                        <mat-select #email>
+                          <mat-option *ngFor="let row of emails" value="{{row}}">{{row}}</mat-option>
+                          </mat-select>
+                      </mat-form-field></td>
+                    <td>
+                      <mat-form-field appearance="fill">
+                        <mat-select #depart>
+                          <mat-option *ngFor="let row of departments" value="{{row}}">{{row}}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      </td>
+                    <td> <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Choose a date</mat-label>
+                      <input matInput [matDatepicker]="picker1" #joinDate>
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field></td>
+                    <td><button mat-raised-button color="primary" (click)="searchEmp(email, depart,joinDate.value)">Search</button></td>
+                  </tr>
+                </tbody>
+              </table>
+             
+            
+                
+              
+             </div>
+             <table mat-table [dataSource]="empList" class="mat-elevation-z8 demo-table" *ngIf="!isLoading">
+              <!--SNO-->
+              <ng-container matColumnDef="Sno">
+                <th mat-header-cell *matHeaderCellDef> Sno </th>
+                <td mat-cell *matCellDef="let element ; let i = index"> {{i+1}} </td>
+            </ng-container>
+            <!--FullName-->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Full Name </th>
+              <td mat-cell *matCellDef="let element" matTooltip="{{element.firstName}} {{element.lastName}}"> {{element.firstName}} {{element.lastName}}</td>
+          </ng-container>
+          <!--userName-->
+          <ng-container matColumnDef="user">
+            <th mat-header-cell *matHeaderCellDef> User Name </th>
+            <td mat-cell *matCellDef="let element" matTooltip="{{element.userName}}"> {{element.userName}} </td>
+          </ng-container>
+          <!--gender-->
+          <ng-container matColumnDef="gender">
+           <th mat-header-cell *matHeaderCellDef> Gender </th>
+           <td mat-cell *matCellDef="let element" matTooltip="{{element.gender |gender}}"> {{element.gender |gender}} </td>
+          </ng-container>
+          <!--designation-->
+          <ng-container matColumnDef="designation">
+           <th mat-header-cell *matHeaderCellDef> Designation </th>
+           <td mat-cell *matCellDef="let element" matTooltip="{{element.designation}}"> {{element.designation}} </td>
+          </ng-container>
+          <!--department-->
+          <ng-container matColumnDef="department">
+           <th mat-header-cell *matHeaderCellDef> Department </th>
+           <td mat-cell *matCellDef="let element" matTooltip="{{element.department}}"> {{element.department}} </td>
+          </ng-container>
+          <!--oEmail-->
+          <ng-container matColumnDef="oEmail">
+            <th mat-header-cell *matHeaderCellDef> Official Email </th>
+            <td mat-cell *matCellDef="let element" matTooltip="{{element.officalEmailId}}"> {{element.officalEmailId}} </td>
+           </ng-container>
+           <!--Status-->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef matTooltip="Candidate Status"> Candidate Status </th>
+            <td mat-cell *matCellDef="let element"> <mat-checkbox color="primary" [checked]="element.status ==='Active'" (change)="openDialog($event,element.emp_code)"> {{element.status}}</mat-checkbox>  </td>
+           </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+             </table>
+             <table>
+              <tr *ngIf="!empList.length">
+                <td style="text-align: center;">
+                  No Records Found!
+                </td>
+              </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="size" [length]="length" [pageIndex]="page"
+                     showFirstLastButtons  (page)="pageEvent($event)"
+                     aria-label="Select page of periodic elements">
+          </mat-paginator>
+          <div *ngIf="isLoading"  style="display: flex; justify-content: center; 
+          align-items: center; background: white;">
+         <mat-progress-spinner color="primary" mode="indeterminate">
+         </mat-progress-spinner>
+         </div>
+          </mat-tab>
+        </mat-tab-group>
+</mat-card>

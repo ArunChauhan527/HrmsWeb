@@ -1,0 +1,45 @@
+mat-card {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+label.limit {
+  float : right;
+  
+}
+label{
+    font-size: medium;
+}
+label.First{
+    margin-top: 2%;
+}
+label.sub{
+    margin-top: 2%;
+    margin-left: 1%;
+}
+td.label{
+    margin-left : 5%;
+}
+table{
+    width: 80%;
+}
+td{
+    width: 50%
+}
+.submit{
+    float: right;
+}
+.error{
+    border-color: red;
+}
+.input{
+    margin-left: 10%;
+}
+.slip{
+    
+    margin-top: 2%;
+}
+.taxDeduction{
+    margin-top: 3%;
+    width : 100%
+}

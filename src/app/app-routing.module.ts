@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
 import { LoginComponent } from './component/login/login.component';
 import { AttandanceComponent } from './modules/attandance/attandance.component';
 import { ClientModuleComponent } from './modules/client-module/client-module.component';
@@ -19,15 +21,6 @@ const routes: Routes = [
    {
     path : "dashboard" , component: DashboardComponent,
     children:[
-      {
-        path:'dashboard',
-        redirectTo:'dashboard/home',
-        pathMatch:'full'
-    },
-    {
-      path:"",
-      component: HomeComponent
-    },
       {
       path:"home",
       component: HomeComponent
@@ -63,12 +56,24 @@ const routes: Routes = [
     {
       path:"client",
       component: ClientModuleComponent
+    },
+    {
+      path:"changePassword",
+      component:ChangePasswordComponent
     }
   ]
 },
 {
   path:"logout",
   component:LoginComponent
+},
+{
+  path:"forget",
+  component:ForgetPasswordComponent
+},
+{
+  path:"changePassword",
+  component:ChangePasswordComponent
 }
 ];
 

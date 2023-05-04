@@ -1,3 +1,79 @@
 .example-full-width {
     width: 100%;
 }
+
+#leaveConfig {
+    float: right;
+}
+#main-Card {
+    height: 100%;
+}  
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    overflow: hidden;
+    width:auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }  
+#searchBar, #edit
+{
+    float: right;
+}
+
+#edit:hover{
+ cursor: pointer;  
+}
+
+.progress-bar {
+  padding: 0;
+}
+.progress {
+  width: 50px;
+  height:100%;
+}
+#fileInput {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
+.mat-toolbar-single-row {
+  height: auto !important;
+  background: transparent;
+  padding: 0;
+}
+.mat-toolbar-single-row button {
+  width: 100px;
+}
+.mat-form-field {
+  width: 100%;
+}
+.message {
+  background-color: #ddd;
+  padding: 15px;
+  color: #333;
+  border: #aaa solid 1px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+} 
+.submit{
+  float: right;
+  margin-block-start: 2%;
+}
+.role{
+  float: right;
+}
+.download{
+  background-color: green;
+  color: #fff;
+}
+.error{
+  border-color: red;
+}

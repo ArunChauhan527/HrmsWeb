@@ -8,3 +8,49 @@ table {
 mat-slider {
     width: 100%;
 }
+mat-card {
+    height: 100%;
+}
+.slider
+{
+    padding-left: 0;
+    margin: 14px 0;
+    list-style: none;
+    margin: 0px;
+}
+.curP
+{
+    cursor: pointer;
+}
+nav
+{
+    text-align: center;
+}
+ul{
+    overflow:hidden;
+}
+li{
+    display:inline-block;
+}
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  .time{
+    font-size: 16px;
+    padding: 0 10px;
+    float: left;
+    line-height: 14px;
+  }

@@ -18,3 +18,23 @@ button {
 mat-form-field {
  width: 100%;
 }
+
+.leave-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.leave-table >th, td {
+  overflow: hidden;
+  width:auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}  
+
+
+mat-card {
+  height: 100%;
+}
+.leave{
+  margin-top: 3%;
+}

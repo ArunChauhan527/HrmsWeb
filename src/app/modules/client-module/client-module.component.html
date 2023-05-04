@@ -1,3 +1,4 @@
+<mat-card id="main-Card" style="overflow-y: auto;">
 <div class="container">
     <div class="row">
         <div class="col-sm-2"></div>
@@ -12,19 +13,84 @@
                         </div>
                     </div>
                 </mat-card-title>
-                <mat-card-content *ngIf="!register">
+                <mat-card-content *ngIf="!register && !regClient">
+
+                    <input type="button" class="btn-primary" value="Create Client" id="regClient" (click)="createClient()">
+                    <br>
+                    <br>
+                    <mat-form-field style="width:200px;" id="searchBar">
+                        <span matPrefix></span>
+                        <input matInput type="tel" placeholder="search" (change)="searchCompany($event)" >
+                        <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+                    </mat-form-field>
+                    <table mat-table [dataSource]="renderclient" class="mat-elevation-z8 demo-table" *ngIf="isLoading">
+                        <!-- Sno Column -->
+                       <ng-container matColumnDef="clientId">
+                        <th mat-header-cell *matHeaderCellDef> Sno </th>
+                        <td mat-cell *matCellDef="let element ; let i = index"> {{i+1}} </td>
+                       </ng-container>
+          
+                       <!-- Client Name Column -->
+                       <ng-container matColumnDef="company">
+                          <th mat-header-cell *matHeaderCellDef> Client Name </th>
+                          <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+                       </ng-container>
+          
+                       <!-- Short Form Column -->
+                       <ng-container matColumnDef="shortForm">
+                          <th mat-header-cell *matHeaderCellDef> Short Form </th>
+                          <td mat-cell *matCellDef="let element"> {{element.shortForm}} </td>
+                       </ng-container>
+                       <!-- Creation Time Column -->
+                       <ng-container matColumnDef="createdAt">
+                          <th mat-header-cell *matHeaderCellDef> Creation Time </th>
+                          <td mat-cell *matCellDef="let element"> {{element.createdAt | date : 'fullDate'}} </td>
+                       </ng-container>
+                       <!--  Hr Admin Name Column -->
+                       <ng-container matColumnDef="hrAdmin">
+                          <th mat-header-cell *matHeaderCellDef> Hr Admin Name </th>
+                          <td mat-cell *matCellDef="let element"> {{element.hrAdmin}} </td>
+                       </ng-container>
+                       <!-- Creation Time Column -->
+                       <ng-container matColumnDef="createAt">
+                          <th mat-header-cell *matHeaderCellDef> Creation Time </th>
+                          <td mat-cell *matCellDef="let element"> {{element.createAt | date : 'fullDate'}} </td>
+                       </ng-container>
+                       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>  
+                    <table>
+                        <tr *ngIf="!renderclient.length && isLoading">
+                          <td style="text-align: center;">
+                            No Records Found!
+                          </td>
+                        </tr>
+                      </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="pageSize" [length]="length" [pageIndex]="pageIndex"
+                           showFirstLastButtons  (page)="pageEvent($event)"
+                           aria-label="Select page of periodic elements">
+                </mat-paginator>
+                <div *ngIf="!isLoading"  style="display: flex; justify-content: center; 
+                align-items: center; background: white;">
+               <mat-progress-spinner color="primary" mode="indeterminate">
+               </mat-progress-spinner>
+               </div>
+                </mat-card-content>
+                <mat-card-content *ngIf="!register && regClient">
                     <br>
                     <input type="button" id="register" class="btn-primary" value="Register Admin" (click)="registerAdmin()">
+                    <input type="button" class="btn-primary" value="Client Info" id="regClient" (click)="createClient()">
+                    <br>
                     <br>
                     <table>
                         <tbody>
                             <tr>
-                                <td>Client Name</td>
+                                <td>Client Name *</td>
                                 <td>:</td>
                                 <td>
                                 <mat-form-field class="example-full-width" appearance="fill" >
                                     <mat-label>Enter Client Name</mat-label>
-                                    <input type="text" matInput>
+                                    <input type="text" matInput #clientName>
                                 </mat-form-field>
                             </td>
                             </tr>
@@ -34,17 +100,17 @@
                                 <td>
                                     <mat-form-field class="example-full-width" appearance="fill" >
                                         <mat-label>Cleint Id</mat-label>
-                                        <input type="text" matInput>
+                                        <input type="text" matInput value={{industry}} readonly>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Short Name</td>
+                                <td>Short Name *</td>
                                 <td>:</td>
                                 <td>
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Enter Short Name</mat-label>
-                                        <input type="text" matInput>
+                                        <input type="text" matInput #shrtName>
                                     </mat-form-field>
                                 </td>
                             </tr>
@@ -53,10 +119,12 @@
 
                     <br>
                     <br>
-                    <input type="button" value="submit" class="btn-primary">
+                    <input type="button" value="submit" class="btn-primary" (click)="saveClient(clientName.value,shrtName.value)">
                 </mat-card-content>
-                <mat-card-content *ngIf="register">
+                <mat-card-content *ngIf="register" >
                     <br>
+                    <input type="button" id="register" class="btn-primary" value="Create Client" (click)="registerAdmin()">
+                    <input type="button" class="btn-primary" value="Client Info" id="regClient" (click)="createClient()">
                     <br>
                     <app-register-form></app-register-form>
                 </mat-card-content>
@@ -65,3 +133,4 @@
         <div class="col-sm-2"></div>
     </div>
 </div>
+</mat-card>

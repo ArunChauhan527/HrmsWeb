@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <mat-icon >menu</mat-icon>
+    <mat-icon (click)="toggleSidebar()" >menu</mat-icon>
     <div>Hrms</div>
     <div>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -10,8 +10,18 @@
                 <li>First Notification  &nbsp;</li>
             </ul>
           </mat-menu>   
-       <button mat-icon-button aria-label="Example icon-button with a menu" (click)="logout()">
+       <button mat-icon-button aria-label="Example icon-button with a menu"  [matMenuTriggerFor]="menu1">
         <mat-icon >logout</mat-icon>
        </button> 
+       <mat-menu #menu1="matMenu" >
+        <button mat-menu-item (click)="changePassword()">
+          <mat-icon>key</mat-icon>
+          Change Password
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+       </mat-menu>
     </div>
 </mat-toolbar>

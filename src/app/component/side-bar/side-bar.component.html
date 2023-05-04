@@ -5,7 +5,7 @@
             <mat-icon matTooltip="toggle side menu">menu</mat-icon>&nbsp;
         </div> -->
 
-        <div mat-menu-item *ngFor="let i of sideMenu" [routerLink]="['/dashboard', i.route]" class="with-icon padded" (click)="$event.stopPropagation()">
+        <div mat-menu-item *ngFor="let i of sideMenu"  class="with-icon padded" (click)="routeMoudles(i.route)" (click)="$event.stopPropagation()">
             <mat-icon [matTooltip]="i.toolTip">{{ i.icon }}</mat-icon>&nbsp;
             <span [hidden]="collapse">{{ i.name }}</span>
         </div>

@@ -1,3 +1,4 @@
+<mat-card>
 <div class="container">
     <div class="row">
         <div class="col-sm-2"> </div>
@@ -7,33 +8,92 @@
              <mat-card-content *ngIf="!regulate">
                  <input type="button" value="Regulate Attandance" class="btn-primary" id="regulate" (click)="Onregulate()">
                  <input type="button" *ngIf="!punchIn" value="Punch In" (click)="OnpunchIn()" class="btn-primary">
-                 <input type="button" *ngIf="punchIn" value="Punch Out" class="btn-primary">
+                 <input type="button" *ngIf="punchIn" value="Punch Out" (click)="OnpunchOut()" class="btn-primary">
+                 <br>
+                 <div class="contianer">
+                   <div class="row">
+                   <div class="col-sm-4"></div>
+                   <div class="col-sm-4">
+                   <nav>
+                    <ul class="slider">
+                       <li class="curP"> <i class="arrow left curP" (click)="fetchPreviousWeek()"></i></li>
+                       <li><div class="time">{{startDate | date : 'dd-MMM'}}&nbsp;-&nbsp;{{endDate| date : 'dd-MMM'}}</div></li>
+                       <li class="curP"><i class="arrow right curP" (click)="fetchNextWeek()"></i></li>
+                    </ul>
+                    </nav>
+                    </div>
+
+                   <div class="col-sm-4"></div>
+                   </div>
+                    
+                 </div>
                  <table>
+                    <thead>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+                            punch-in
+                        </th>
+                        <th></th>
+                        <th>punch-out</th>
+                    </thead>
                   <tbody *ngFor="let row of attandance">
                      <tr>
                          <td>
-                            {{row.punchIn}}
+                           <div> {{row.punchIn| date : 'EE,dd'}}</div>
                          </td>
                          <td>
-                            <mat-slider aria-label="unit(s)" min="0"  max="24" step="1" value="{{row.value}}" disabled></mat-slider>
+                         <div>--</div> 
                          </td>
                          <td>
-                           {{row.punchOut}}
+                            <div [ngSwitch]="row.status">
+                                <span *ngSwitchCase="status.system">00:00</span>
+                                <span *ngSwitchDefault>{{row.punchIn| date : 'hh:mm a'}}</span>
+                            </div>
+                         </td>
+                         <td>
+                            <div><mat-slider aria-label="unit(s)" color="accent" min="0"  max="24" step="1" value="{{row.value}}" ></mat-slider></div>
+                         </td>
+                         <td>
+                            <div [ngSwitch]="row.status">
+                                <span *ngSwitchCase="'system'">00:00</span>
+                                <span *ngSwitchDefault>{{(row.punchOut!==null) ? (row.punchOut| date : 'hh:mm a'):(currDatTime | date :'hh:mm a')}}</span>
+                            </div>
                          </td>
                      </tr> 
                   </tbody>   
                 </table>
              </mat-card-content>
              <mat-card-content *ngIf="regulate">
+                <input type="button" value="Attandance List" class="btn-primary" id="regulate" (click)="Onregulate()">
+                <br>
+                <br>
                 <table>
                     <tbody>
+                        <tr>
+                           <td>Date</td>
+                           <td>:</td>
+                           <td>                   
+                 <mat-form-field class="example-full-width" appearance="fill">
+                   <mat-label>Choose a date</mat-label>
+                   <input matInput [matDatepicker]="picker1" #regulateDate>
+                   <mat-hint>MM/DD/YYYY</mat-hint>
+                   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                   <mat-datepicker #picker1></mat-datepicker>
+                 </mat-form-field>
+                           </td> 
+                        </tr>
                         <tr>
                             <td>PunchIn Time</td>
                             <td>:</td>
                             <td>
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>PunchIn Time</mat-label>
-                                    <input type="time" matInput>
+                                    <input type="time" matInput #punchIn>
                                     </mat-form-field>
                                 </td>       
                         </tr>
@@ -43,7 +103,7 @@
                             <td>
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>PunchOut Time</mat-label>
-                                <input type="time" matInput>
+                                <input type="time" matInput #punchOut>
                                 </mat-form-field>
                             </td>
                         </tr>
@@ -53,17 +113,17 @@
                             <td>
                               <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Leave a Remarks</mat-label>
-                                <textarea matInput placeholder="Ex. Forget to Punch..."></textarea>
+                                <textarea matInput placeholder="Ex. Forget to Punch..." #reason></textarea>
                               </mat-form-field>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <input type="button" value="Submit" class="btn-primary">
+                <input type="button" value="Submit" class="btn-primary" (click)="regulateReq(regulateDate.value,punchIn.value,punchOut.value,reason.value)">
              </mat-card-content>
              </mat-card>  
         </div>
         <div class="col-sm-2"> </div>
     </div>
 </div>
-
+</mat-card>

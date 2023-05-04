@@ -2,6 +2,15 @@ mat-form-field {
  width: 100%;
 }
 
-#register{
+#register, #searchBar {
     float: right;
 }
+
+table {
+    width: 100%;
+  } 
+
+#main-Card {
+    height: 100%;
+}  
+

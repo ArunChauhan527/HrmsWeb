@@ -16,3 +16,12 @@
     display: inline-block;
     width: 100%;
   }
+
+  #forgetPassword {
+    color: blue;
+    margin-left: 50%;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }

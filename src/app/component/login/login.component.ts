@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { Login } from './Login';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EncryptionService } from 'src/app/service/encryption.service';
 
 @Component({
   selector: 'app-login',
@@ -11,16 +12,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private auth: AuthenticationService, private router: Router, private _snackBar: MatSnackBar) { }
+  constructor(private auth: AuthenticationService, private router: Router, private _snackBar: MatSnackBar, private encrypt : EncryptionService) { }
 
   ngOnInit(): void {
   }
+
 
   login(username: string, password:string){
      console.log('username :'+ username);
     this.auth.login(new Login(username, password)).subscribe(res=>
       {console.log(res.token);
         localStorage.setItem('token', res.token);
+        localStorage.setItem('refreshToken', res.refreshToken);
         this.router.navigate(['/dashboard']);},
         err=>{
           console.log('error while login ', err);
@@ -28,5 +31,9 @@ export class LoginComponent implements OnInit {
         }
       );
     
+  }
+
+  forgetPassword(){
+    this.router.navigate(['forget']);
   }
 }
