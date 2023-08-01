@@ -16,4 +16,8 @@ export class PayrollServiceService {
    this.http.post(this.url+'saveAndUpdate', model);
   }
 
+  fetchEmpInfo(empId : string){
+    return this.http.get(this.url+'getEarning/'+empId);
+  }
+
 }

@@ -1,0 +1,27 @@
+#main-Card {
+    height: 100%;
+} 
+
+.error{
+    border-color: red;
+  }
+  .submit{
+    float: right;
+    margin-block-start: 2%;
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    overflow: hidden;
+    width:auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }  
+
+  .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
+  }

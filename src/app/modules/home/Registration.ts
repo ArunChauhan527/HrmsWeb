@@ -6,14 +6,14 @@ export class Registration
      city : string; 
      createdDate : Date;
      department: string;
-    designation : string; dob: string; emp_code : number; industry: string;
+    designation : string; dob: string; empCode : number; industry: string;
      joiningDate: Date; officalEmailId: string; pancard : string; password: string; personalEmailId: string;
      pincode : number; reportingManager: string; roleId : number;
      state: string; updatedDate: Date; userName: string;gender : string; firstName: string; lastName : string;
      status: string; tmpPass : boolean;
                          
     constructor(aadharcardno: number, address: string, city : string, createdDate : Date,
-        department: string, designation : string, dob: string, emp_code : number, industry: string,
+        department: string, designation : string, dob: string, empCode : number, industry: string,
         joiningDate: Date, offical_email_id: string, pancard : string, password: string, personal_email_id: string,
         pincode : number, reportingManager: string, roleId : number,
         state: string, updatedDate: Date, userName: string, gender : string, firstName: string, lastName: string, stauts: string, tmpPass : boolean){
@@ -24,7 +24,7 @@ export class Registration
             this.department = department;
             this.designation = designation;
             this.dob = dob;
-            this.emp_code = emp_code;
+            this.empCode = empCode;
             this.industry = industry;
             this.joiningDate = joiningDate;
             this.officalEmailId = offical_email_id;

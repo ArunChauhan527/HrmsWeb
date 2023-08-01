@@ -49,7 +49,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModulesPipe } from './Pipe/modules.pipe';
 import { AuthInterceptor } from './Auth/auth-interceptor';
 import { DatePipe } from '@angular/common';
-import {MatTabsModule} from '@angular/material/tabs'
+import {MatTabsModule} from '@angular/material/tabs';
+import { SalaryComponent } from './modules/salary/salary.component';
+import { PercentagePipe } from './Pipe/percentage.pipe'
+import {MatExpansionModule} from '@angular/material/expansion'
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +74,9 @@ import {MatTabsModule} from '@angular/material/tabs'
     ChangePasswordComponent,
     GenderPipe,
     DialogComponent,
-    ModulesPipe
+    ModulesPipe,
+    SalaryComponent,
+    PercentagePipe
   ],
   imports: [
     BrowserModule,
@@ -103,7 +108,7 @@ import {MatTabsModule} from '@angular/material/tabs'
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule, MatExpansionModule
    ],
   providers: [
     {

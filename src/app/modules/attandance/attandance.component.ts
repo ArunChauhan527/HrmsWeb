@@ -35,14 +35,14 @@ export class AttandanceComponent implements OnInit {
     }, 1000);
     this.startDate = new Date();
     this.endDate = new Date();
-    console.log(this.startDate.toUTCString(),this.startDate.getDay());
+    console.log(this.startDate.toISOString());
     if(this.startDate.getDay()!==0)
     {
       this.startDate.setDate(this.startDate.getDate()-this.startDate.getDay());
       this.startDate = this.startDate;
     }
     this.endDate.setDate(this.startDate.getDate()+6);
-    console.log(this.endDate.toISOString()); 
+    console.log(this.endDate.toUTCString()); 
     this.auth.checkAuth();
     this.active.queryParams.subscribe(res=>{this.industry = this.encrypt.decrypt(res['ind']);});
     this.fetchWeek();
@@ -53,6 +53,8 @@ export class AttandanceComponent implements OnInit {
   fetchWeek(){
     let start = this.datepipe.transform(this.startDate,"yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
     let end = this.datepipe.transform(this.endDate,"yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+    console.log("startDate : ", start);
+    console.log("endDate : ", end);
    this.attend.fetchAttendance(start, end).subscribe({
     error: (err)=>{
       console.log(err);

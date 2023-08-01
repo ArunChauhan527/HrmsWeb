@@ -11,10 +11,10 @@ export class SalaryConfig{
     createdDate : Date;
     updatedDate : Date;
     updatedBy : string;
-
+    createdBy : string; 
     constructor(hra : number, lta : number, ca : number,
         medR : number, pf : number, epf : number, id : number, industry : string, 
-        createdDate : Date, updatedDate : Date, updatedBy : string){
+        createdDate : Date, updatedDate : Date, updatedBy : string, createdBy : string){
      this.hra = hra;
      this.lta = lta;
      this.ca  = ca;
@@ -26,5 +26,6 @@ export class SalaryConfig{
      this.createdDate = createdDate;
      this.updatedBy = updatedBy;
      this.updatedDate = updatedDate; 
+     this.createdBy = createdBy;
     }
 }

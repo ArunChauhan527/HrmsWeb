@@ -123,64 +123,7 @@
               </mat-card-content>   
               </mat-card>
   
-        </mat-tab>
-        <mat-tab label="Salary Config">
-
-        <form [formGroup]="salaryConfig" (ngSubmit)="salaryConfigSubmit()">
-        <table>
-            <tr>
-                <td>
-                    <label>Hra <mat-icon  fontIcon="info" matTooltip="Enter HRA %">info</mat-icon></label>
-                </td>
-                <td>
-                    <input type="text"  formControlName="hra" [ngClass]="salaryConfig.controls['hra'].invalid? 'form-control error' : 'form-control'" >
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>LTA <mat-icon  fontIcon="info" matTooltip="Enter LTA %">info</mat-icon></label>
-                </td>
-                <td>
-                    <input type="text" formControlName="lta" [ngClass]="salaryConfig.controls['lta'].invalid? 'form-control error' : 'form-control'" >
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Conveyance Allowance <mat-icon  fontIcon="info" matTooltip="Enter Conveyance Allowance %">info</mat-icon></label>
-                </td>
-                <td>
-                    <input type="text" formControlName="ca" [ngClass]="salaryConfig.controls['ca'].invalid? 'form-control error' : 'form-control'">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Medical Reimbursement <mat-icon  fontIcon="info" matTooltip="Enter Medical Reimbursement Amount">info</mat-icon></label>
-                </td>
-                <td>
-                    <input type="text" formControlName="medR" [ngClass]="salaryConfig.controls['medR'].invalid? 'form-control error' : 'form-control'">
-                </td>
-            </tr>
-            <tr>
-               <td>
-                 <label>PF <mat-icon  fontIcon="info" matTooltip="Enter PFa %">info</mat-icon> </label>
-               </td>
-               <td>
-                <input type="text" formControlName="pf" [ngClass]="salaryConfig.controls['pf'].invalid? 'form-control error' : 'form-control'">
-               </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Employer's Contribution to PF <mat-icon  fontIcon="info" matTooltip="Enter EPF Amount">info</mat-icon></label>
-                </td>
-                <td>
-                    <input type="text" formControlName="epf" [ngClass]="salaryConfig.controls['epf'].invalid? 'form-control error' : 'form-control'">
-                </td>
-            </tr>
-        </table>
-    
-       <button mat-raised-button color="primary" class="submit">Submit</button>
-       </form>
-        </mat-tab>     
+        </mat-tab> 
         <mat-tab label="Leave Config">
             <mat-card-content >
                 

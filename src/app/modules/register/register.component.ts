@@ -135,7 +135,7 @@ export class RegisterComponent implements OnInit {
         console.log('result on close', result, event.checked, !event.checked);
         console.log('events', event);
         event.source._checked = result === true ? event.checked : !event.checked;  
-        const emp =  this.empList.filter(emp=>emp.emp_code === emp_code).values();
+        const emp =  this.empList.filter(emp=>emp.empCode === emp_code).values();
         const empL = emp.next().value;
         console.log(empL);
         if(event.source._checked && empL.status === 'DeActive')
@@ -159,7 +159,7 @@ export class RegisterComponent implements OnInit {
     this.auth.updateStatus(reg).subscribe({
     error: (err)=>{ console.log(err);}, 
     next : (value)=>{ 
-      const index = this.empList.indexOf(this.empList.filter(emp=> emp.emp_code === value.emp_code).values().next().value); 
+      const index = this.empList.indexOf(this.empList.filter(emp=> emp.empCode === value.empCode).values().next().value); 
      this.empList[index]= value;
      console.log(this.empList);
     }});

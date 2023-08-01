@@ -1,0 +1,364 @@
+<mat-card id="main-Card" style="overflow-y: auto;">
+    <mat-tab-group>
+        <mat-tab label="Salary Config">
+
+            <form [formGroup]="salaryConfig" (ngSubmit)="salaryConfigSubmit()">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Hra <mat-icon fontIcon="info" matTooltip="Enter HRA %">info</mat-icon></label>
+                        </td>
+                        <td>
+                            <input type="text" formControlName="hra"
+                                [ngClass]="salaryConfig.controls['hra'].invalid? 'form-control error' : 'form-control'">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>LTA <mat-icon fontIcon="info" matTooltip="Enter LTA %">info</mat-icon></label>
+                        </td>
+                        <td>
+                            <input type="text" formControlName="lta"
+                                [ngClass]="salaryConfig.controls['lta'].invalid? 'form-control error' : 'form-control'">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Conveyance Allowance <mat-icon fontIcon="info"
+                                    matTooltip="Enter Conveyance Allowance %">info</mat-icon></label>
+                        </td>
+                        <td>
+                            <input type="text" formControlName="ca"
+                                [ngClass]="salaryConfig.controls['ca'].invalid? 'form-control error' : 'form-control'">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Medical Reimbursement <mat-icon fontIcon="info"
+                                    matTooltip="Enter Medical Reimbursement Amount">info</mat-icon></label>
+                        </td>
+                        <td>
+                            <input type="text" formControlName="medR"
+                                [ngClass]="salaryConfig.controls['medR'].invalid? 'form-control error' : 'form-control'">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>PF <mat-icon fontIcon="info" matTooltip="Enter PFa %">info</mat-icon> </label>
+                        </td>
+                        <td>
+                            <input type="text" formControlName="pf"
+                                [ngClass]="salaryConfig.controls['pf'].invalid? 'form-control error' : 'form-control'">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Employer's Contribution to PF <mat-icon fontIcon="info"
+                                    matTooltip="Enter EPF Amount">info</mat-icon></label>
+                        </td>
+                        <td>
+                            <input type="text" formControlName="epf"
+                                [ngClass]="salaryConfig.controls['epf'].invalid? 'form-control error' : 'form-control'">
+                        </td>
+                    </tr>
+                </table>
+
+                <button mat-raised-button color="primary" class="submit">Submit</button>
+            </form>
+        </mat-tab>
+        <mat-tab label="Salary Offered">
+            <form [formGroup]="salary" (ngSubmit)="saveSalary()">
+                <table>
+                    <tr>
+                        <td>Select Employee</td>
+                        <td><mat-select ngClass="form-control" multiple (selectionChange)="fetchEarning($event.value)">
+                                <mat-form-field>
+                                    <input matInput placeholer="Search by username" (input)="findEmp($event)" />
+                                </mat-form-field>
+                                <mat-option>Select</mat-option>
+                                <mat-option *ngFor="let emp of empInfo" [value]="emp.empCode">
+                                    {{emp.userName}}
+                                </mat-option>
+                            </mat-select></td>
+                    </tr>
+                </table>
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Earning
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Earning for the Current Month
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <table formGroupName="earning">
+                            <tr>
+                                <td>Basics</td>
+                                <td><input type="text" formControlName="basic" (keyup)="suggestedSalary($event)"
+                                        [ngClass]="earning.controls['basic'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>HRA</td>
+                                <td><input type="text" formControlName="hra"
+                                        [ngClass]="earning.controls['hra'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Conveyance Allowance</td>
+                                <td><input type="text" formControlName="conveyanceAllowance"
+                                        [ngClass]="earning.controls['conveyanceAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NightShift Allowance</td>
+                                <td><input type="text" formControlName="nightShiftAllowance"
+                                        [ngClass]="earning.controls['nightShiftAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Medical Reimbursement</td>
+                                <td><input type="text" formControlName="medicalReimbursement"
+                                        [ngClass]="earning.controls['medicalReimbursement'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Special Allowance</td>
+                                <td><input type="text" formControlName="specialAllowance"
+                                        [ngClass]="earning.controls['specialAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Telephone Reimbursement</td>
+                                <td><input type="text" formControlName="telephoneReimbursement"
+                                        [ngClass]="earning.controls['telephoneReimbursement'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Uniform Allowance</td>
+                                <td><input type="text" formControlName="uniformAllowance"
+                                        [ngClass]="earning.controls['uniformAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Meal Coupons</td>
+                                <td><input type="text" formControlName="mealCoupons"
+                                        [ngClass]="earning.controls['mealCoupons'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Leave Travel Allowance</td>
+                                <td><input type="text" formControlName="lta"
+                                        [ngClass]="earning.controls['lta'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Children Education Allowance</td>
+                                <td><input type="text" formControlName="childrenEduAllowance"
+                                        [ngClass]="earning.controls['childrenEduAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Car Running Maintenance</td>
+                                <td><input type="text" formControlName="carRunningMaintenance"
+                                        [ngClass]="earning.controls['carRunningMaintenance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Arrears</td>
+                                <td><input type="text" formControlName="arrears"
+                                        [ngClass]="earning.controls['arrears'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Deduction
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Deduction from salary for the Current Month
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <table formGroupName="deduction">
+                           <tr>
+                            <td>TDS</td>
+                            <td><input type="text" formControlName="tds" [ngClass]="deduction.controls['tds'].invalid? 'form-control error' : 'form-control'"></td> 
+                           </tr>
+                           <tr>
+                            <td>PF</td>
+                            <td><input type="text" formControlName="pf" [ngClass]="deduction.controls['pf'].invalid? 'form-control error' : 'form-control'"></td> 
+                           </tr>
+                           <tr>
+                            <td>Meal Coupon Deduction</td>
+                            <td><input type="text" formControlName="mealCouponsDeductions" [ngClass]="deduction.controls['mealCouponsDeductions'].invalid? 'form-control error' : 'form-control'"></td> 
+                           </tr>
+                           <tr>
+                            <td>Employer's Contribution to PF</td>
+                            <td><input type="text" formControlName="employerPF" [ngClass]="deduction.controls['employerPF'].invalid? 'form-control error' : 'form-control'" ></td> 
+                           </tr>
+                           <tr>
+                            <td>Loan/Salary Advance</td>
+                            <td><input type="text" formControlName="loanAdvance" [ngClass]="deduction.controls['loanAdvance'].invalid? 'form-control error' : 'form-control'" ></td> 
+                           </tr>
+                           <tr>
+                            <td>Other Deductions</td>
+                            <td><input type="text" formControlName="otherDeduction" [ngClass]="deduction.controls['otherDeduction'].invalid? 'form-control error' : 'form-control'" ></td> 
+                           </tr> 
+                        </table>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <button mat-raised-button color="primary" class="submit">Submit</button>
+            </form>
+        </mat-tab>
+        <mat-tab label="Monthly Salaries">
+            <form [formGroup]="monthlySalary" >
+                <table>
+                    <tr>
+                        <td>Select Employee</td>
+                        <td><mat-select ngClass="form-control" multiple (selectionChange)="fetchEarning($event.value)">
+                                <mat-form-field>
+                                    <input matInput placeholer="Search by username" (input)="findEmp($event)" />
+                                </mat-form-field>
+                                <mat-option>Select</mat-option>
+                                <mat-option *ngFor="let emp of empInfo" [value]="emp.empCode">
+                                    {{emp.userName}}
+                                </mat-option>
+                            </mat-select></td>
+                    </tr>
+                </table>
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Earning
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Earning for the Current Month
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <table formGroupName="earning">
+                            <tr>
+                                <td>Basics</td>
+                                <td><input type="text" formControlName="basic" (keyup)="suggestedSalary($event)"
+                                        [ngClass]="earning.controls['basic'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>HRA</td>
+                                <td><input type="text" formControlName="hra"
+                                        [ngClass]="earning.controls['hra'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Conveyance Allowance</td>
+                                <td><input type="text" formControlName="conveyanceAllowance"
+                                        [ngClass]="earning.controls['conveyanceAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NightShift Allowance</td>
+                                <td><input type="text" formControlName="nightShiftAllowance"
+                                        [ngClass]="earning.controls['nightShiftAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Medical Reimbursement</td>
+                                <td><input type="text" formControlName="medicalReimbursement"
+                                        [ngClass]="earning.controls['medicalReimbursement'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Special Allowance</td>
+                                <td><input type="text" formControlName="specialAllowance"
+                                        [ngClass]="earning.controls['specialAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Telephone Reimbursement</td>
+                                <td><input type="text" formControlName="telephoneReimbursement"
+                                        [ngClass]="earning.controls['telephoneReimbursement'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Uniform Allowance</td>
+                                <td><input type="text" formControlName="uniformAllowance"
+                                        [ngClass]="earning.controls['uniformAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Meal Coupons</td>
+                                <td><input type="text" formControlName="mealCoupons"
+                                        [ngClass]="earning.controls['mealCoupons'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Leave Travel Allowance</td>
+                                <td><input type="text" formControlName="lta"
+                                        [ngClass]="earning.controls['lta'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Children Education Allowance</td>
+                                <td><input type="text" formControlName="childrenEduAllowance"
+                                        [ngClass]="earning.controls['childrenEduAllowance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Car Running Maintenance</td>
+                                <td><input type="text" formControlName="carRunningMaintenance"
+                                        [ngClass]="earning.controls['carRunningMaintenance'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Arrears</td>
+                                <td><input type="text" formControlName="arrears"
+                                        [ngClass]="earning.controls['arrears'].invalid? 'form-control error' : 'form-control'">
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Deduction
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Deduction from salary for the Current Month
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <table formGroupName="deduction">
+                           <tr>
+                            <td>TDS</td>
+                            <td><input type="text" formControlName="tds" [ngClass]="deduction.controls['tds'].invalid? 'form-control error' : 'form-control'"></td> 
+                           </tr>
+                           <tr>
+                            <td>PF</td>
+                            <td><input type="text" formControlName="pf" [ngClass]="deduction.controls['pf'].invalid? 'form-control error' : 'form-control'"></td> 
+                           </tr>
+                           <tr>
+                            <td>Meal Coupon Deduction</td>
+                            <td><input type="text" formControlName="mealCouponsDeductions" [ngClass]="deduction.controls['mealCouponsDeductions'].invalid? 'form-control error' : 'form-control'"></td> 
+                           </tr>
+                           <tr>
+                            <td>Employer's Contribution to PF</td>
+                            <td><input type="text" formControlName="employerPF" [ngClass]="deduction.controls['employerPF'].invalid? 'form-control error' : 'form-control'" ></td> 
+                           </tr>
+                           <tr>
+                            <td>Loan/Salary Advance</td>
+                            <td><input type="text" formControlName="loanAdvance" [ngClass]="deduction.controls['loanAdvance'].invalid? 'form-control error' : 'form-control'" ></td> 
+                           </tr>
+                           <tr>
+                            <td>Other Deductions</td>
+                            <td><input type="text" formControlName="otherDeduction" [ngClass]="deduction.controls['otherDeduction'].invalid? 'form-control error' : 'form-control'" ></td> 
+                           </tr> 
+                        </table>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <button mat-raised-button color="primary" class="submit">Submit</button>
+            </form>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

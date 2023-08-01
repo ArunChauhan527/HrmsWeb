@@ -11,6 +11,7 @@ import { menuList } from 'src/app/component/side-bar/MenuList';
 import { ExcelServiceService } from 'src/app/service/excel-service.service';
 import { SalaryConfig } from './SalaryConfig';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SalaryConfigService } from 'src/app/service/salary-config.service';
 
 @Component({
   selector: 'app-config',
@@ -37,12 +38,12 @@ export class ConfigComponent implements OnInit {
   leavePolicy! : LeavePolicy;
   edit : boolean = false;
   menu : MenuItem[] = menuList;
-  public salaryConfig! : FormGroup;
-  valid = Validators.pattern("[0-9]{0,6}");
+
 
   displayedColumns : string[] = ['roleId', 'roleName', 'accessModule','access','createdBy','updatedBy', 'createdat','updatedat'];
   constructor(private admin: AdminServiceService, private auth : AuthenticationService,
-     private snakBar : MatSnackBar, private leave : LeaveServiceService, private excel : ExcelServiceService) { }
+     private snakBar : MatSnackBar, private leave : LeaveServiceService, private excel : ExcelServiceService,
+     private salaryConfigService : SalaryConfigService) { }
 
   ngOnInit(): void {
     console.log(this.menu);
@@ -50,20 +51,6 @@ export class ConfigComponent implements OnInit {
     this.auth.getuserName().subscribe(res=> this.userName=res);
     this.fetchModules();
     this.fetchUserInfo();
-    this.salaryConfig = new FormGroup({
-     id : new FormControl(null),
-     hra : new FormControl(0, this.valid),
-     lta : new FormControl(0, this.valid),
-     ca : new FormControl(0, this.valid),
-     medR : new FormControl(0, this.valid),
-     pf : new FormControl(0, this.valid),
-     epf : new FormControl(0, this.valid),
-     industry : new FormControl(''),
-     createdDate : new FormControl(new Date()),
-     updatedDate : new FormControl(new Date()),
-     updatedBy : new FormControl('')
-
-    }, { validators : this.valid});
   }
 
   fetchModules(){
@@ -191,12 +178,6 @@ export class ConfigComponent implements OnInit {
   
   downloadSampleNationalHoliday(){
     this.excel.sampleNationalSheet();
-  }
-
-  salaryConfigSubmit(){
-    if(this.salaryConfig.valid){
-      console.log(this.salaryConfig);
-    }
   }
 
 }

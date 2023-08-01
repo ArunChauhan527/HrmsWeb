@@ -13,6 +13,7 @@ import { PayrollComponent } from './modules/payroll/payroll.component';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { ReimbursementComponent } from './modules/reimbursement/reimbursement.component';
+import { SalaryComponent } from './modules/salary/salary.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
     {
       path:"changePassword",
       component:ChangePasswordComponent
+    },
+    {
+      path : "salary",
+      component: SalaryComponent
     }
   ]
 },
